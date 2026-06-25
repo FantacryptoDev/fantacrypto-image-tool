@@ -1,0 +1,21 @@
+{
+  "name": "fantacrypto-image-tool",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1",
+    "vite": "^6.0.7",
+    "xlsx": "^0.18.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {}
+}
