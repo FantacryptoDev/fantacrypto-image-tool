@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/openverse/(.*)",
+      "destination": "https://api.openverse.engineering/$1"
+    },
+    {
+      "source": "/api/commons/(.*)",
+      "destination": "https://commons.wikimedia.org/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
