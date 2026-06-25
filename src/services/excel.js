@@ -1,4 +1,5 @@
 import * as XLSX from 'xlsx'
+import { buildVerticalQuery } from './cryptoKeywords'
 
 export async function readExcel(file) {
   const data = await file.arrayBuffer()
@@ -16,9 +17,10 @@ export async function readExcel(file) {
     if (index === 0 && first.toLowerCase().includes('nome')) return
 
     const filename = normalizeFilename(first)
-    const query = second && !second.startsWith('http')
+    const baseQuery = second && !second.startsWith('http')
       ? second
       : filenameToQuery(filename)
+    const query = buildVerticalQuery(filename, baseQuery)
 
     parsed.push({
       id: `${Date.now()}-${index}`,
