@@ -52,10 +52,12 @@ export default function App() {
     setBusy(true)
     setProgress({ active: true, current: 0, total: items.length, label: 'Avvio ricerca...' })
 
+    const delay = options.source === 'openai' ? 13000 : 500
+
     for (let i = 0; i < items.length; i++) {
       setProgress({ active: true, current: i + 1, total: items.length, label: `Cerco ${items[i].filename}` })
       await searchOne(items[i])
-      await wait(500)
+      await wait(delay)
     }
 
     setProgress({ active: false, current: 0, total: 0, label: '' })
