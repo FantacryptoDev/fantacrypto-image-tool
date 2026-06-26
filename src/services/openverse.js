@@ -1,3 +1,5 @@
+import { generateWithOpenAI } from './openai'
+
 function orientationParam(orientation) {
   if (!orientation || orientation === 'any') return ''
   return orientation
@@ -88,6 +90,10 @@ export async function searchAllSources(query, options = {}) {
 
   if (source === 'all' || source === 'wikimedia') {
     tasks.push(searchWikimedia(query, options).catch(() => []))
+  }
+
+  if (source === 'openai') {
+    tasks.push(generateWithOpenAI(query, options))
   }
 
   const results = (await Promise.all(tasks)).flat()
