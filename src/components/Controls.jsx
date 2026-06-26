@@ -10,6 +10,7 @@ export default function Controls({ options, setOptions, onSearchAll, disabled })
             <option value="all">Openverse + Wikimedia</option>
             <option value="openverse">Solo Openverse</option>
             <option value="wikimedia">Solo Wikimedia</option>
+            <option value="openai">Genera con AI (OpenAI)</option>
           </select>
         </label>
 
