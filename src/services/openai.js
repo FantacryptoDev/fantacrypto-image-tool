@@ -11,8 +11,9 @@ export async function generateWithOpenAI(query, options = {}) {
   const size = SIZE_BY_ORIENTATION[options.orientation] || '1024x1024'
   const [width, height] = size.split('x').map(Number)
   const n = 1
+  const prompt = buildImagePrompt(query)
 
-  const data = await requestWithRetry({ prompt: query, size, n })
+  const data = await requestWithRetry({ prompt, size, n })
 
   return (data.data || [])
     .filter(item => item.b64_json)
@@ -28,6 +29,16 @@ export async function generateWithOpenAI(query, options = {}) {
       width,
       height
     }))
+}
+
+function buildImagePrompt(query) {
+  const topic = String(query || '').replace(/\s+/g, ' ').trim()
+
+  return [
+    `Cinematic, atmospheric digital artwork evoking the concept of "${topic}" in the world of cryptocurrency and blockchain.`,
+    'Dramatic lighting, rich depth, vibrant futuristic color palette, intricate visual metaphors, professional concept-art quality.',
+    'Pure visual scene only: absolutely no text, no letters, no words, no numbers, no typography, no labels, no captions, no logos, no watermarks, no UI elements.'
+  ].join(' ')
 }
 
 async function requestWithRetry(body, attempt = 0) {
